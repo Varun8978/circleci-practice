@@ -7,13 +7,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Run Tests
+          name: Install dependencies
           command: |
-            echo "This is a dummy CircleCI build job."
-            python --version
-
-workflows:
-  version: 2
-  test_pipeline:
-    jobs:
-      - build
+            python -m pip install --upgrade pip
+            pip install pytest
+      - run:
+          name: Run Pytest
+          command: |
+            pytest
